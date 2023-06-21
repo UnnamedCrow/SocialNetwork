@@ -23,11 +23,14 @@ namespace SocialNetwork.BLL.Services
 
         public void AddFriend(UserAddfriendData userAddfriendData)
         {
-
+            
             if (!new EmailAddressAttribute().IsValid(userAddfriendData.UserFriendEmail))
                 throw new ArgumentNullException();
             var findUserEntity = userRepository.FindByEmail(userAddfriendData.UserFriendEmail);
             if (findUserEntity is null) throw new UserNotFoundException();
+
+            var friendEntityFounded = friendRepository.FindFriendById(findUserEntity.id);
+            if (findUserEntity != null) throw new UserFoundException();
 
             var friendEntity = new FriendEntity()
             {

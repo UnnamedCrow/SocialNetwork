@@ -40,6 +40,10 @@ namespace SocialNetwork.PLL.Views
             {
                 AlertMessage.Show("Введите корректный адрес");
             }
+            catch(UserFoundException)
+            {
+                AlertMessage.Show("Этот пользователь уже находится у Вас в друзьях");
+            }
             catch(Exception)
             {
                 AlertMessage.Show("Произошла ошибка при добавлении друга");

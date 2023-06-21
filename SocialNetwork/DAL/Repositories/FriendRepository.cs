@@ -19,6 +19,11 @@ namespace SocialNetwork.DAL.Repositories
         {
             return Execute(@"delete from friends where id = :id_p", new { id_p = id });
         }
+
+        public FriendEntity FindFriendById(int friend_id)
+        {
+            return QueryFirstOrDefault<FriendEntity>("select * from friends where friend_id = :id_p", new { id_p = friend_id });
+        }
     }
 
     public interface IFriendRepository
@@ -26,5 +31,6 @@ namespace SocialNetwork.DAL.Repositories
         int Create(FriendEntity friendEntity);
         IEnumerable<FriendEntity> FindAllByUserId(int userId);
         int Delete(int id);
+        FriendEntity FindFriendById(int friend_id);
     }
 }
